@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Kiss Day 💋</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body{
+  height:100vh;
+  overflow:hidden;
+  background: linear-gradient(135deg,#ff758c,#ff7eb3,#ffc3e6);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+}
+
+/* Glass Card */
+.page{
+  display:none;
+  width:90%;
+  max-width:420px;
+  padding:40px 25px;
+  text-align:center;
+  color:white;
+  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.15);
+  border-radius:25px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.2);
+  animation:fade 0.6s ease;
+}
+
+.active{
+  display:block;
+}
+
+h1{
+  font-size:24px;
+  margin-bottom:15px;
+}
+
+p{
+  font-size:15px;
+  line-height:1.6;
+  margin-bottom:20px;
+}
+
+button{
+  padding:10px 22px;
+  border:none;
+  border-radius:20px;
+  background:white;
+  color:#ff4d88;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.08);
+}
+
+.kiss{
+  font-size:70px;
+  animation:pulse 1s infinite alternate;
+  cursor:pointer;
+}
+
+.from{
+  margin-top:15px;
+  font-size:14px;
+  opacity:0.9;
+}
+
+@keyframes pulse{
+  from{transform:scale(1);}
+  to{transform:scale(1.2);}
+}
+
+@keyframes fade{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+/* Floating hearts */
+.heart{
+  position:absolute;
+  color:white;
+  animation:float 6s linear infinite;
+  opacity:0.7;
+}
+
+@keyframes float{
+  from{transform:translateY(100vh);}
+  to{transform:translateY(-10vh);}
+}
+
+/* Popup */
+.popup{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) scale(0);
+  background:white;
+  color:#ff4d88;
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+  transition:0.4s;
+  z-index:10;
+}
+
+.popup.show{
+  transform:translate(-50%,-50%) scale(1);
+}
+
+.popup h2{
+  margin-bottom:10px;
+}
+
+.popup button{
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Pages -->
+<div class="page active" id="p1">
+  <h1>Happy Kiss Day 💋</h1>
+  <p>Gursanjh ❤️<br>This day is all about love and the magic we share.</p>
+  <button onclick="next(2)">Next ➜</button>
+</div>
+
+<div class="page" id="p2">
+  <h1>Your Smile 🥰</h1>
+  <p>Your smile is my peace, your happiness is my mission.</p>
+  <button onclick="next(3)">Next ➜</button>
+</div>
+
+<div class="page" id="p3">
+  <h1>My Heart 💗</h1>
+  <p>Every heartbeat whispers your name softly, Gursanjh.</p>
+  <button onclick="next(4)">Next ➜</button>
+</div>
+
+<div class="page" id="p4">
+  <h1>One Sweet Wish 🌸</h1>
+  <p>If I could right now, I would give you the sweetest kiss.</p>
+  <button onclick="next(5)">Next ➜</button>
+</div>
+
+<div class="page" id="p5">
+  <h1>Virtual Kiss Time 💕</h1>
+  <p>Come closer to the screen and tap the kiss 💋</p>
+  <div class="kiss" onclick="showPopup()">💋</div>
+  <div class="from">Forever yours, Aalam ❤️</div>
+</div>
+
+<!-- Popup -->
+<div class="popup" id="popup">
+  <h2>Muahhhh 😘</h2>
+  <p>I felt that kiss, Gursanjh 💖<br>You just made my heart melt.</p>
+  <button onclick="closePopup()">Close</button>
+</div>
+
+<script>
+function next(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('p'+n).classList.add('active');
+}
+
+function showPopup(){
+  document.getElementById("popup").classList.add("show");
+}
+
+function closePopup(){
+  document.getElementById("popup").classList.remove("show");
+}
+
+/* Floating hearts generator */
+setInterval(()=>{
+  const heart=document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML="❤";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=(Math.random()*20+15)+"px";
+  heart.style.animationDuration=(Math.random()*3+3)+"s";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),6000);
+},400);
+</script>
+
+</body>
+</html>
